@@ -1,0 +1,79 @@
+---
+import "../../styles/global.css";
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+
+interface ProjectDetail {
+  title: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  tag: string;
+  technologies: string[];
+  repoUrl?: string; 
+  liveUrl?: string;
+}
+
+const currentProject: ProjectDetail = {
+  title: "shiva",
+  description: "Plataforma de pentesting utilizando vectores de ataque comunes a paginas web.",
+  longDescription: "Shiva es una herramienta de auditoría automatizada desarrollada para identificar vulnerabilidades de inyección SQL, XSS y CSRF en entornos controlados. La arquitectura se basa en microservicios, permitiendo la ejecución concurrente de múltiples vectores de ataque sin comprometer la estabilidad del nodo principal.",
+  image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80", // Usa resoluciones altas para el hero
+  tag: "Ciberseguridad · Pentesting · Web",
+  technologies: ["Python", "Docker", "React", "Bash"],
+  repoUrl: "https://github.com/tu-usuario/shiva",
+};
+
+---
+<Header />
+<Layout>
+<article class="single-project-view">
+  <header class="project-hero">
+    <div 
+      class="hero-bg" 
+      style={`background-image: url(${currentProject.image})`}
+    ></div>
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content wrapper">
+      <span class="project-tag">{currentProject.tag}</span>
+      <h1 class="project-title">{currentProject.title}</h1>
+    </div>
+  </header>
+
+  <div class="project-body wrapper">
+    <section class="project-description">
+      <h2 class="section-subtitle">Visión General</h2>
+      <p>{currentProject.longDescription}</p>
+    </section>
+
+    <aside class="project-meta">
+      <div class="meta-block">
+        <h3 class="meta-title">Stack Tecnológico</h3>
+        <ul class="tech-list">
+          {currentProject.technologies.map((tech) => (
+            <li class="tech-item">{tech}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="meta-block">
+        <h3 class="meta-title">Enlaces</h3>
+        <div class="links-group">
+          {currentProject.repoUrl && (
+            <a href={currentProject.repoUrl} target="_blank" rel="noopener noreferrer" class="action-link">
+              Ver Repositorio fuente ↗
+            </a>
+          )}
+          {currentProject.liveUrl && (
+            <a href={currentProject.liveUrl} target="_blank" rel="noopener noreferrer" class="action-link">
+              Visitar en vivo ↗
+            </a>
+          )}
+        </div>
+      </div>
+    </aside>
+  </div>
+</article>
+</Layout>
+

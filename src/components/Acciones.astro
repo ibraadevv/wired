@@ -1,0 +1,27 @@
+---
+import { turso } from '../lib/turso.ts';  
+
+interface accionHistorial {
+	id: number;
+	texto: string;
+	fecha: string;
+}
+
+let acciones: AccionHistorial[] = [];
+let errorDb: string | null = null;
+
+try {
+  const result = await turso.execute('SELECT id, texto, fecha FROM historial ORDER BY fecha DESC');
+  
+  acciones = result.rows.map(row => ({
+    id: Number(row.id),
+    texto: String(row.texto),
+    fecha: String(row.fecha)
+  }));
+
+} catch (err) {
+  console.error("Fallo al recuperar el historial de Turso:", err);
+  errorDb = "Error interno de la base de datos.";
+};
+
+---

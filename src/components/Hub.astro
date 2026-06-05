@@ -1,0 +1,94 @@
+---
+
+import {
+  ClientRouter,
+  fade,
+  slide,
+} from 'astro:transitions';
+
+interface Project {
+title: string;
+description: string;
+image: string;
+href: string;
+tag?: string;
+}
+
+const projects: Project[] = [
+{
+title: "shiva",
+description:
+"Plataforma de pentesting utilizando vectores de ataque comunes a paginas web para auditar la seguridad de estas.",
+image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+href: "/proyectos/shiva",
+tag: "Ciberseguridad · Pentesting · Web",
+},
+{
+title: "nvimdots",
+description:
+"App web para gestionar el trabajo remoto: zonas horarias, rutinas y productividad desde cualquier rincón del mundo.",
+image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80",
+href: "/proyectos/nvimdots",
+tag: "Configuracion · Linux · NeoVim · Herramientas",
+},
+{
+title: "lesscont",
+description:
+"Proyecto de gestion de control de versiones mediante una herramienta CLI en local.",
+image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80",
+href: "/proyectos/lesscont",
+tag: "Control de versiones · Rust",
+},
+];
+---
+
+
+<section transition:animate={slide({ duration: '0.6s' })} class="projects-section">
+	<header class="section-header">
+		<p class="section-eyebrow">Trabajos seleccionados</p>
+		<h2 class="section-title">Proyectos</h2>
+	</header>
+
+	<div class="projects-grid">
+		{
+		projects.map((project) => (
+		<a href={project.href} class="project-card group" aria-label={project.title}>
+			<div
+					class="card-bg"
+					style={`background-image: url('${project.image}')`}
+					/>
+
+				<div class="card-overlay-base" />
+
+					<div class="card-overlay-hover" />
+
+						<div class="card-content-default">
+							    {project.tag && <span class="card-tag">{project.tag}</span>}
+							    <h3 class="card-title">{project.title}</h3>
+						</div>
+
+						<div class="card-description-wrapper">
+							<p class="card-description">{project.description}</p>
+							<span class="card-cta">
+								     Ver proyecto
+								     <svg
+								     xmlns="http://www.w3.org/2000/svg"
+									    width="16"
+										   height="16"
+											   viewBox="0 0 24 24"
+												    fill="none"
+													  stroke="currentColor"
+														  stroke-width="2"
+																stroke-linecap="round"
+																		stroke-linejoin="round"
+																				 >
+																				 <path d="M5 12h14M12 5l7 7-7 7" />
+								     </svg>
+							</span>
+						</div>
+		</a>
+		))
+		}
+					</div>
+</section>
+
