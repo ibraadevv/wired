@@ -1,5 +1,12 @@
 ---
 import { turso } from '../lib/turso.ts';  
+import "../styles/global.css";
+
+import {
+  ClientRouter,
+  fade,
+  slide,
+} from 'astro:transitions';
 
 interface accionHistorial {
 	id: number;
@@ -25,3 +32,33 @@ try {
 };
 
 ---
+
+<section transition:animate={slide({ duration: '0.6s' })}  class="historial-container"> 
+	<h2 class="text-4xl" >Registro de Actividad</h2>
+
+  {errorDb ? (
+    <div class="alerta-error" role="alert">
+      <strong>Error:</strong> {errorDb}
+    </div>
+  ) : acciones.length === 0 ? (
+    <p class="estado-vacio">El historial está inmaculadamente vacío.</p>
+  ) : (
+    <ul class="lista-acciones">
+      {acciones.map((accion) => (
+        <li class="item-accion">
+          <span class="badge-id">#{accion.id}</span>
+          <p class="texto-descripcion">{accion.texto}</p>
+          <time datetime={accion.fecha}>
+            {new Date(accion.fecha).toLocaleDateString('es-ES', { 
+              year: 'numeric', 
+              month: 'short', 
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            })}
+          </time>
+        </li>
+      ))}
+    </ul>
+  )}
+</section>
