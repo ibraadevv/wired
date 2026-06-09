@@ -2,6 +2,7 @@
 import "../../styles/global.css";
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
+import nvimDotsImage from "../../assets/nvimdots.png";
 
 interface ProjectDetail {
   title: string;
@@ -18,7 +19,7 @@ const currentProject: ProjectDetail = {
   title: "nvimdots",
   description: "Configuracion y herramientas de neovim centradas en la productividad en entornos de desarrollo web.",
   longDescription: "Frente a la integracion de asistentes en la mayoria de IDEs modernos, saturados de telematria y con un consumo gigante de memoria. He realizado una configuracion del editor de codigo NeoVim basado en Vim que me sirva exactamente lo que fue creado: editar codigo. Centrada en un minimalismo que haga que pueda correr en cualquier estacion de trabajo que tenga disponible en el momento sin diferencias y utilizando herramientas de codigo abierto sin suscrpciones.",
-  image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80", // Usa resoluciones altas para el hero
+  image: nvimDotsImage,
   tag: "NeoVim · Configuraciones · Productividad · Web",
   technologies: ["Lua", "LazyVim", "Nvim", "Bash"],
   repoUrl: "https://github.com/ibraadevv/Nvim",
@@ -31,7 +32,7 @@ const currentProject: ProjectDetail = {
   <header class="project-hero">
     <div 
       class="hero-bg" 
-      style={`background-image: url(${currentProject.image})`}
+      style={`background-image: url(${currentProject.image.src})`}
     ></div>
     <div class="hero-overlay"></div>
     

@@ -2,6 +2,7 @@
 import "../../styles/global.css";
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
+import working from "../../assets/working.png";
 
 interface ProjectDetail {
   title: string;
@@ -18,7 +19,7 @@ const currentProject: ProjectDetail = {
   title: "shiva",
   description: "Plataforma de pentesting utilizando vectores de ataque comunes a paginas web.",
   longDescription: "Shiva es una herramienta de auditoría automatizada desarrollada para identificar vulnerabilidades de inyección SQL, XSS y CSRF en entornos controlados. La arquitectura se basa en microservicios, permitiendo la ejecución concurrente de múltiples vectores de ataque sin comprometer la estabilidad del nodo principal.",
-  image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80", // Usa resoluciones altas para el hero
+  image: working,
   tag: "Ciberseguridad · Pentesting · Web",
   technologies: ["Python", "Docker", "React", "Bash"],
   repoUrl: "https://github.com/tu-usuario/shiva",
@@ -31,7 +32,7 @@ const currentProject: ProjectDetail = {
   <header class="project-hero">
     <div 
       class="hero-bg" 
-      style={`background-image: url(${currentProject.image})`}
+      style={`background-image: url(${currentProject.image.src})`}
     ></div>
     <div class="hero-overlay"></div>
     
